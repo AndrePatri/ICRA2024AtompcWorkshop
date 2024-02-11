@@ -1,0 +1,119 @@
+% Copyright (C) 2023  Andrea Patrizi (AndrePatri, andreapatrizi1b6e6@gmail.com)
+% 
+% This file is part of PosterTex and distributed under the General Public License version 2 license.
+% 
+% PosterTex is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 2 of the License, or
+% (at your option) any later version.
+% 
+% PosterTex is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with PosterTex.  If not, see <http://www.gnu.org/licenses/>.
+% 
+
+\documentclass{beamer}
+
+% packages 
+\input{00-imports}
+
+% settings
+\input{00-settings}
+
+% definitions
+\input{00-defs}
+
+% bibliography
+\input{bibsources.tex}
+
+% you have to set all this personal information
+\setPosterName{Super catchy title: interesting subtitle}
+\setAuthors{John Doe, Janet Doe and Janet Doe}
+\setContacts{john.doe@me.com, janet.doe@me.com}
+\setUrls{www.linkedin.com/in/JohnDoe, www.linkedin.com/in/JanetDoe}
+\setLocation{Beautiful Venue, \\University of The World, Somewhere}
+
+\setroundradius{5mm}
+\settitlecontentspace{-0.3cm}
+\settitlepaddingtop{20pt}
+\settitlepaddingbottom{15pt}
+
+\setcontentframecolor{boxbkdarkgrey}
+
+\checksetup
+
+\begin{document}
+	
+	\begin{frame}[t]
+		
+		\headline{logos/icra2024_logo.png,logos/hhcm-unige_logo.pdf}
+			
+		\begin{columns}[b]
+			
+			\begin{column}{0.955\textwidth}
+				
+				\begin{customblock}{\textbf{Motivation}}{hhcmblue}{white}{blockbkgrey}
+					
+					\input{motivation}
+					
+				\end{customblock}
+		
+			\end{column}
+		
+		\end{columns}
+			
+		\begin{columns}[T] 
+
+			\begin{column}{.46\textwidth}
+				
+				\begin{customblock}{\textbf{Contributions}}{hhcmblue}{white}{blockbkgrey}
+					\input{contributions}
+				\end{customblock}
+				
+				\begin{customblock}{\textbf{SoA}}{hhcmblue}{white}{blockbkgrey}
+					\input{SoA}
+				\end{customblock}
+			
+				\begin{customblock}{\textbf{Formulation}}{hhcmblue}{white}{blockbkgrey}
+					\input{formulation_p1}
+				\end{customblock}
+				
+			\end{column}
+			
+			\begin{column}{.46\textwidth}
+				
+				\begin{customblocknotitle}{blockbkgrey}
+					\input{formulation_p2}
+				\end{customblocknotitle}
+			
+				\begin{customblock}{\textbf{Results}}{hhcmblue}{white}{blockbkgrey}
+					\input{results}
+				\end{customblock}
+			
+%				\begin{customblock}{\textbf{References}}{boxbkdarkgrey}{white}{blockbkgrey}
+%				\vspace{4cm}
+%				\end{customblock}
+				
+				\begin{customblock}{\textbf{Next steps}}{blockbklightblue}{white}{blockbkgrey}
+					\input{next_steps}
+				\end{customblock}
+			
+				\begin{customblock}{\textbf{References}}{boxbkyellow}{white}{blockbkgrey}
+					\input{references}
+				\end{customblock}
+			
+				\begin{customblock}{\textbf{Contact Information}}{boxbkseablue}{white}{blockbkgrey}
+				\input{contacts}
+				\end{customblock}
+			
+			\end{column}
+			
+		\end{columns}
+
+	\end{frame}
+
+\end{document}

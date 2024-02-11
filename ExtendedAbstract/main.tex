@@ -1,0 +1,85 @@
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
+
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+
+\IEEEoverridecommandlockouts                              % This command is only needed if 
+                                                          % you want to use the \thanks command
+
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
+
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+\input{00-imports}
+
+\input{00-defs}
+
+\input{00-settings}
+
+% ### uncomment to produce preprint IEEE copyright notice ###
+%\AtBeginShipout{%
+%  \AtBeginShipoutUpperLeft{%
+%    \put(\dimexpr.5\paperwidth-9cm\relax,-1cm){%
+%      \parbox{\textwidth}{\centering\footnotesize%
+%        © 2023 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works.}%
+%    }%
+%  }%
+%}
+
+\begin{document}
+	
+\title{\LARGE \bf
+A Modular Research Tool for Learning-based Receding Horizon Control
+}
+
+\author{
+  \authorblockN{%
+    Andrea Patrizi\authorrefmark{1}\authorrefmark{2},
+    and Nikos G. Tsagarakis\authorrefmark{1}
+  }
+}
+
+\maketitle
+
+\begingroup\renewcommand\thefootnote{\authorrefmark{2}}
+	\footnotetext{Department of Informatics, Bioengineering, Robotics and Systems Engineering, Università di Genova, Via All'Opera Pia 13, 16145 Genova.}
+\endgroup
+
+\begingroup\renewcommand\thefootnote{\authorrefmark{1}}
+	\footnotetext{Humanoids and Human-Centred Mechatronics (HHCM), Istituto Italiano di Tecnologia (IIT), Via San Quirico 19d, 16163 Genova.}
+\endgroup
+
+\begingroup\renewcommand\thefootnote{\authorrefmark{3}}
+	\footnotetext{The authors contributed equally to the manuscript.}
+\endgroup
+
+\setlength{\textfloatsep}{12.0pt plus 8.0pt minus .0pt}
+
+\begin{abstract}
+Robotics research right now is heavily shifting towards AI-based tool. This also applies specifically to loco-manipulation research, where we there has been a substantial growth of research towards pure learning-based control pipelines. Nonetheless it is the authors belief that, given the current limitations of pure learning-based policies (e.g. safety guarantees, interpretability, ...), online model-based Trajectory Optimization should not be considered outdated yet. Our ultimate goal is to show the benefits of combining offline data-based policy design, specifically through Reinforcement Learning (RL), with online Motion Planning, i.e. Receding Horizon Control (RHC). Even though this kind of hybrid approaches are not entirely new, to the authors' knowledge, there is no specific tool currently available for search in this domain. To this purpose, we developed a modular software ecosystem, which is hereby presented briefly in all its main components and features. We care to stress that the framework is currently under active development, so features might not be stable of could be lacking. To facilitate usability and diffusion, we make all framework code open source under the GPLv2 license. To showcase the potential of the framework, we furthermore present a simplified proof-of-concept with our hybrid-wheeled quadruped Centauro.
+\end{abstract}
+
+\IEEEpeerreviewmaketitle
+
+\input{01-introduction}
+
+\input{02-problem_definition}
+
+\input{03-contributions}
+
+\input{04-formulation}
+
+\input{05-simulation_results}
+
+\input{06-experimental_results}
+
+\input{07-conclusions}
+
+\input{08-acknowledgements}
+
+\input{09-appendix}
+
+\bibliographystyle{ieeetr}
+\bibliography{bibliography/refs}
+
+\end{document}
