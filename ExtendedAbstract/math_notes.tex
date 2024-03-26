@@ -94,11 +94,12 @@
 		\item $\gamma$ is the discount factor representing the importance of future rewards, and
 		\item $\max_{a \in A} [\cdot]$ denotes the maximum over all possible actions in state $s$.
 	\end{itemize}}
+	Alternative, the same equation can be stated for the optimal action-value function (also named ``quality function'')
 
 	\section{Reinforcement Learning}
 	
 	\section{Optimal control problem}
-	Optimal Control is a field of study concerned with determining control inputs that optimize the behavior of a dynamical system over time. It aims to find the control strategy that minimizes or maximizes a certain performance criterion while satisfying system constraints. Optimal control has applications in a wide range of fields, including aerospace, robotics, manufacturing, finance, and economics. Optimal control deals with systems whose behavior evolves over time according to certain dynamics. These systems can be described by differential or difference equations that govern their evolution. In optimal control, the decision-maker (controller) selects control inputs or actions to influence the evolution of the system. These control inputs can be continuous (e.g., forces, torques) or discrete (e.g., on/off switches). Optimal control seeks to optimize a certain performance criterion that quantifies the quality of the system's behavior. This criterion could be to minimize energy consumption, maximize profit, track a desired trajectory, or regulate system variables within specified bounds.  Optimal control problems often involve constraints on the system's state variables, control inputs, or other parameters. These constraints must be satisfied while optimizing the performance criterion.
+	Optimal Control is a field of study concerned with determining control inputs that optimize the behavior of a dynamical system over time. It aims to find the control strategy that minimizes or maximizes a certain performance criterion while satisfying system constraints. Optimal control has applications in a wide range of fields, including aerospace, robotics, manufacturing, finance, and economics. Optimal control deals with systems whose behavior evolves over time according to certain dynamics. These systems can be described by differential or difference equations that govern their evolution. In optimal control, the decision-maker (controller) selects control inputs or actions to influence the evolution of the system. These control inputs can be continuous (e.g., forces, torques) or discrete (e.g., on/off switches). Optimal control seeks to optimize a certain performance criterion that quantifies the quality of the system's behavior. This criterion could be to minimize energy consumption, maximize profit, track a desired trajectory, or regulate system variables within specified bounds.  Optimal control problems often involve constraints on the system's state variables, control inputs, or other parameters. These constraints must be satisfied while optimizing the performance criterion. There are several types of optimal control:
 	\begin{enumerate}
 		\item \textbf{Open-loop Control:} In open-loop control, the control inputs are predetermined based on a model of the system and are not adjusted based on feedback from the system's output. Open-loop control is suitable for systems with predictable dynamics and no disturbances.
 		
@@ -106,7 +107,7 @@
 		
 		\item \textbf{Stochastic Control:} Stochastic control deals with systems influenced by random disturbances or uncertainties. It seeks to find control strategies that optimize performance in the presence of uncertainty, using probabilistic models and decision-making criteria.
 	\end{enumerate}
-	The optimal control problem is defined by the following contrained optimization program:
+	The optimal control problem is defined by the following constrained optimization program:
 	\begin{equation}
 		\begin{aligned}
 			& \underset{u_0,\,\ldots,\,u_{N-1}}{\text{minimize}}
@@ -126,5 +127,6 @@
 		\item Control Constraints: $u \in \mathcal{U}$
 		\item Objective Function: $L(u) = \sum_{k=0}^{N-1} l(x_k, u_k) + L_t(x_N)$
 	\end{itemize}
-	Solving this problem in real-time and in a receding-horizon fashion is usually referred to as Receding Horizon Control (RHC) or Model Predictive Control (MPC). The formulation of the problem could be made more complex by instroducing stochasticity at several levels.
+	Solving this problem in real-time and in a receding-horizon fashion is usually referred to as Receding Horizon Control (RHC) or Model Predictive Control (MPC). 
+	
 \end{document}
