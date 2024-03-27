@@ -1,6 +1,16 @@
-\section{A Hystorical Overview: \textnormal{\textit{from Markov Decision Processes and Dynamic Programming to modern Receding Horizon Control and Reinforcement Learning}}}
-The foundation of \textbf{Markov Decision Processes} (MDPs) can be traced back to the work of Andrey Markov, a Russian mathematician, who developed the theory of Markov chains in the early 20th century
-MDPs. In the late 1950s and early 1960s, Richard Bellman, along with his colleague Howard Dreyfus, introduced MDPs as a mathematical framework for sequential decision-making under uncertainty~\cite{rl:bellman1957markovian}.
+\section{A Hystorical Perspective: \textnormal{\textit{from Markov Decision Processes and Dynamic Programming to modern Receding Horizon Control and Reinforcement Learning}}}
+State-of-the-art of locomotion and manipulation pipelines have been shown to be capable of remarkable performance and robustness~\cite{rl:schneider2023learning,rl:miki2024learning,web::atlas_grip_boston_dyn,web::lrhc_boston_dyn}. These results stand on the shoulders of more than seventy years of research in robotics, control and learning, starting from the very first industrial automated robot \textit{Unimate} in the 1950s~\cite{origins:xu2018fourth}, Richard Bellman's pioneering work in the late 1950s and early 1960s on \textbf{Markov Decision Processes}~\cite{rl:bellman1957markovian} (MDPs) and \textbf{Dynamic Programming}~\cite{rl:bellman1960dynamic} and the birth of \textbf{Artificial Intelligence} (AI) as an established field of study thanks to the contributions of researchers like Alan Turing, John McCarthy, Marvin Minsky (\textit{connectionism}) and Claude Shannon (\textit{information theory}).
+
+Most of the currently employed control tools rely either on online ``model-based'' controllers~\cite{modern_mpc:neunert2018whole,web::atlas_grip_boston_dyn} (e.g. Receding Horizon Control) or ``model-free'' learned policies (e.g. Reinforcement Learning)~\cite{rl:schneider2023learning,rl:miki2024learning}, which are usually trained offline. In the past there have also been several attempts at combining both~\cite{}, where these main trends emerge:
+\begin{itemize}
+\item[1)] \textit{Model augmentation}: integration of learned models into the RHC controller to improve prediction accuracy and control performance.
+\item[2)] \textit{Adaptive tuning} and \textit{parameter optimization}: RHC parameters tuning, based on real-time data.
+\item[3)] \textit{Safety}: a learned-policy is coupled with an RHC controller, which in this context takes the role of a \textit{safety filter}.
+\item[4)] \textit{Hierarchical coupling}:
+\end{itemize}
+Both Receding Horizon Control and Reinforcement Learning 
+foundation of  can be traced back to the work of Andrey Markov, a Russian mathematician, who developed the theory of Markov chains in the early 20th century
+MDPs. , , along with his colleague Howard Dreyfus, introduced MDPs as a mathematical framework for sequential decision-making under uncertainty~\cite{rl:bellman1957markovian}.
 MDPs consist of a set of state $S$, representing the possible configurations or conditions of the system being modeled. At any given time, the system is in one of these states. For each state in the MDP, there is a set of possible actions $A$ that the decision-maker can choose from. Upon taking an action $a\in\,A$ in a particular state $s\in\,S$, the system transitions to a new state $s'\in\,S$ according to a probability distribution $P(s' \mid s, a)$. These transition probabilities capture the stochastic nature of the environment and its dynamics. Associated with each $\{s,\,a\}$ pair is an immediate reward $r(s,\,a)$, expression of the immediate benefit or cost incurred by the decision-maker upon taking that action in that state. The objective in MDPs is to find an optimal policy $\pi(a \vert s)$ that maximizes the cumulative reward obtained by the decision-maker over time. This involves balancing the trade-off between immediate rewards and long-term benefits, taking into account the probabilistic nature of the environment and the dynamics of the system.
 In the late 1950s, Richard Bellman introduced the so-called \textbf{Bellman equation}:\\
 \textit{Let $\pi^*$ be an optimal policy for a Markov Decision Process (MDP) with state space $S$, action space $A$, state transition probabilities $P(s' \mid s, a)$, and immediate rewards $r(s, a)$. Then, for any state $s$ in the state space $S$, the following equation holds:
@@ -15,7 +25,7 @@ In the late 1950s, Richard Bellman introduced the so-called \textbf{Bellman equa
 		\item $\gamma$ is the discount factor representing the importance of future rewards, and
 		\item $\max_{a \in A} [\cdot]$ denotes the maximum over all possible actions in state $s$.
 \end{itemize}}
-Building upon the formulation of MDPs and the above Bellman Equation, Richard Bellman and other researchers developed the theory of Dynamic Programming (DP) as a systematic method for solving optimization problems by breaking them down into simpler subproblems~\cite{rl:bellman1960dynamic}.
+Building upon the formulation of MDPs and the above Bellman Equation, Richard Bellman and other researchers developed the theory of Dynamic Programming (DP) as a systematic method for solving optimization problems by breaking them down into simpler subproblems.
 
 \cite{psyc:skinner2019behavior}
 
@@ -28,14 +38,12 @@ Building upon the formulation of MDPs and the above Bellman Equation, Richard Be
 \cite{rl:pardo2018time}
 \cite{rl:haarnoja2018soft}
 \cite{rl:makoviychuk2021isaac}
-\cite{rl:rudin2022learning}
-\cite{rl:schneider2023learning}
+
 \cite{rl:mujocoaccelereted2023}
-\cite{rl:miki2024learning}
+
 
 \cite{frameworks::horizon_to}
 
-\cite{web::lrhc_boston_dyn}
 \cite{frameworks:mittal2023orbit}
 \cite{frameworks:howell2022}
 \cite{mpc_learn:hewing2020learning}
