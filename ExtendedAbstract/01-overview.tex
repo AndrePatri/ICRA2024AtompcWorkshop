@@ -1,49 +1,34 @@
 \section{A Hystorical Perspective: \textnormal{\textit{from Markov Decision Processes and Dynamic Programming to modern Receding Horizon Control and Reinforcement Learning}}}
-State-of-the-art of locomotion and manipulation pipelines have been shown to be capable of remarkable performance and robustness~\cite{rl:schneider2023learning,rl:miki2024learning,web::atlas_grip_boston_dyn,web::lrhc_boston_dyn}. These results stand on the shoulders of more than seventy years of research in robotics, control and learning, starting from the very first industrial automated robot \textit{Unimate} in the 1950s~\cite{origins:xu2018fourth}, Richard Bellman's pioneering work in the late 1950s and early 1960s on \textbf{Markov Decision Processes}~\cite{rl:bellman1957markovian} (MDPs) and \textbf{Dynamic Programming}~\cite{rl:bellman1960dynamic} and the birth of \textbf{Artificial Intelligence} (AI) as an established field of study thanks to the contributions of researchers like Alan Turing, John McCarthy, Marvin Minsky (\textit{connectionism}) and Claude Shannon (\textit{information theory}).
+State-of-the-art of locomotion and manipulation pipelines have been shown to be capable of remarkable performance and robustness~\cite{rl:schneider2023learning,rl:miki2024learning,web::atlas_grip_boston_dyn,web::lrhc_boston_dyn}. These results stand on the shoulders of more than seventy years of research in robotics, control and learning, starting from the very first industrial automated robot \textit{Unimate} in the 1950s~\cite{origins:xu2018fourth}, Richard Bellman's pioneering work in the late 1950s and early 1960s on \textbf{Markov Decision Processes} (MDPs)~\cite{rl:bellman1957markovian} and \textbf{Dynamic Programming}~\cite{rl:bellman1960dynamic} (DP) and the birth of \textbf{Artificial Intelligence} (AI) as an established field of study thanks to the contributions of researchers like Alan Turing, John McCarthy, Marvin Minsky (\textit{connectionism}) and Claude Shannon (\textit{information theory}).
+MDPs are a mathematical framework used to model sequential decision-making in situations where outcomes are influenced by potentially probabilistic transitions and the actions taken by a decision-maker. MDPs are described by a set of state $S$, representing the possible configurations or conditions of the system being modeled. At any given time, the system is in one of these states. For each state in the MDP, there is a set of possible actions $A$ that the decision-maker can choose from. Upon taking an action $a\in\,A$ in a particular state $s\in\,S$, the system transitions to a new state $s'\in\,S$, with associated immediate reward $r(s,\,a,\,s')$, according to a probability distribution $p(s'\mid s, a)$. The objective in MDPs is to find an optimal policy $\pi^{*}(a\,\vert\,s)$ that maximizes the cumulative (discounted) reward $R_t = \sum_{k=0}^{n-1} \gamma^k \cdot r_{t+k}$ obtained by the decision-maker over a time horizon, possibly infinite.
+In the late 1950s, Richard Bellman and other researchers introduced the so-called \textbf{Bellman equation} for the \textit{value function} $V^{\pi}(s) = \mathbb{E}_\pi [R_t|S_t=s]$:
+\begin{equation}\label{eq:bellman}
+	V^{*}(s) = \sum_{a} \pi(a|s) \sum_{s'} p(s'|s,\,a) \,[r(s,\,a,\,s')\,+\,\gamma\,V^{*}(s')]
+\end{equation}
+which, in conjunction with the formulation of MDPs laid the foundations of DP as a systematic method for solving sequential decision-making problems by breaking them down into simpler sub-problems~\cite{rl:bellman1960dynamic}. This resulted in the so-called \textit{Value Iteration} algorithm, which allows to solve for the optimal value function by recursive application of equation~\eqref{eq:bellman} and consequently retrieve the optimal policy. Short after, the \textit{Policy Iteration} algorithm~\cite{rl:howard1960dynamic} was proposed as a way to compute the optimal policy by alternating between value function evaluation and policy improvement. Later in the 1980s, \textit{TD-learning} was introduced~\cite{rl:barto1983neuronlike}, with the idea of bootstrapping the learning of value functions for MDPs by
+using the current value estimate of temporally successive steps, allowing the development of more computationally efficient learning algorithms. In 1889 Watkins introduced \textit{Q-learning}, which combines TD-learning with DP~\cite{rl:watkins1989learning} in an off-policy (any policy can be used for experience generation) value-based algorithm. Differently from previous approaches, it tries to estimate a ``quality function'' Q(s, a), which indicates the value of being is state s and choosing action a. The increased popularization of back-propagation~\cite{rl:rumelhart1986learning} as a way of training powerful function approximators based on neural networks and the ever-increasing computational resources progressively paved the way to the ancestors of today's most successful and employed on and off-policy RL algorithms PPO~\cite{rl:schulman2017proximal} and SAC~\cite{rl:haarnoja2018soft}, respectively. Some of these ancestors include, for instance, the \textit{Natural Policy Gradient}~\cite{rl:kakade2001natural}, \textit{Deep Quality Networks} (DQN)~\cite{rl:mnih2015human},~\textit{Deep Deterministic Policy Gradient} (DDPG)~\cite{rl:lillicrap2015continuous} and \textit{Trust Region Policy Optimization}~\cite{rl:schulman2015trust} algorithms.
 
-Most of the currently employed control tools rely either on online ``model-based'' controllers~\cite{modern_mpc:neunert2018whole,web::atlas_grip_boston_dyn} (e.g. Receding Horizon Control) or ``model-free'' learned policies (e.g. Reinforcement Learning)~\cite{mpc_learn:aswani2012provably, mpc_learn:terzi2018learning, mpc_learn:soloperto2018learning, rl:schneider2023learning, rl:miki2024learning,mpc_learn:berkenkamp2016safe,mpc_learn:marco2016automatic,mpc_learn:brunner2015stabilizing,mpc_learn:rosolia2019learning,mpc_learn:englert2017inverse,mpc_learn:koller2018learning,mpc_learn:wabersich2021probabilistic,mpc_learn:gillulay2011guaranteed,mpc_learn:wabersich2018safe,mpc_learn:berkenkamp2017safe}, which are usually trained offline. In the past there have also been several attempts at combining both~\cite{mpc_learn:tsounis2020deepgait,mpc_learn:gangapurwala2021real} and the following main approaches can be identified~\cite{mpc_learn:hewing2020learning}:
-\begin{itemize}
-\item[1)] \textit{Model augmentation}: integration of learned models into the RHC controller to improve prediction accuracy and control performance~\cite{mpc_learn:aswani2012provably,mpc_learn:terzi2018learning,mpc_learn:soloperto2018learning}.
-\item[2)] \textit{Adaptive tuning} and \textit{parameter optimization}: RHC parameters tuning (e.g. weights, costs, constraints), based on real-time data~\cite{mpc_learn:berkenkamp2016safe,mpc_learn:marco2016automatic,mpc_learn:brunner2015stabilizing,mpc_learn:rosolia2019learning,mpc_learn:englert2017inverse}.
-\item[3)] \textit{Safety}: a learned-policy or costis coupled with an RHC controller, which in this context takes the role of a \textit{safety filter}~\cite{mpc_learn:koller2018learning,mpc_learn:wabersich2021probabilistic,mpc_learn:gillulay2011guaranteed,mpc_learn:wabersich2018safe,mpc_learn:berkenkamp2017safe}.
-\item[4)] \textit{Hierarchical coupling}:
-\end{itemize}
-Both Receding Horizon Control and Reinforcement Learning 
-foundation of  can be traced back to the work of Andrey Markov, a Russian mathematician, who developed the theory of Markov chains in the early 20th century
-MDPs. , , along with his colleague Howard Dreyfus, introduced MDPs as a mathematical framework for sequential decision-making under uncertainty~\cite{rl:bellman1957markovian}.
-MDPs consist of a set of state $S$, representing the possible configurations or conditions of the system being modeled. At any given time, the system is in one of these states. For each state in the MDP, there is a set of possible actions $A$ that the decision-maker can choose from. Upon taking an action $a\in\,A$ in a particular state $s\in\,S$, the system transitions to a new state $s'\in\,S$ according to a probability distribution $P(s' \mid s, a)$. These transition probabilities capture the stochastic nature of the environment and its dynamics. Associated with each $\{s,\,a\}$ pair is an immediate reward $r(s,\,a)$, expression of the immediate benefit or cost incurred by the decision-maker upon taking that action in that state. The objective in MDPs is to find an optimal policy $\pi(a \vert s)$ that maximizes the cumulative reward obtained by the decision-maker over time. This involves balancing the trade-off between immediate rewards and long-term benefits, taking into account the probabilistic nature of the environment and the dynamics of the system.
-In the late 1950s, Richard Bellman introduced the so-called \textbf{Bellman equation}:\\
-\textit{Let $\pi^*$ be an optimal policy for a Markov Decision Process (MDP) with state space $S$, action space $A$, state transition probabilities $P(s' \mid s, a)$, and immediate rewards $r(s, a)$. Then, for any state $s$ in the state space $S$, the following equation holds:
-	\[
-	V^*(s) = \max_{a \in A} \left[ r(s, a) + \gamma \sum_{s' \in S} P(s' \mid s, a) V^*(s') \right]
-	\]
-	where:
-	\begin{itemize}
-		\item $V^*(s)$ is the optimal value function for state $s$,
-		\item $r(s, a)$ is the immediate reward received upon taking action $a$ in state $s$,
-		\item $P(s' \mid s, a)$ is the probability of transitioning to state $s'$ after taking action $a$ in state $s$,
-		\item $\gamma$ is the discount factor representing the importance of future rewards, and
-		\item $\max_{a \in A} [\cdot]$ denotes the maximum over all possible actions in state $s$.
-\end{itemize}}
-Building upon the formulation of MDPs and the above Bellman Equation, Richard Bellman and other researchers developed the theory of Dynamic Programming (DP) as a systematic method for solving optimization problems by breaking them down into simpler subproblems.
+In an analogous way, Dynamic Programming (DP) principles served as a foundational basis for the evolution of modern RHC~\cite{modern_mpc:grandia2023perceptive}.
+DP's emphasis on backward induction and the Bellman equation, which form the cornerstone of its problem-solving methodology, inspired the development of RHC's iterative optimization strategy. Just as DP breaks down complex problems into smaller subproblems and iteratively finds optimal solutions by considering future consequences, RHC iteratively solves finite-horizon optimal control problems over shorter time intervals, considering system dynamics and constraints. 
 
-\cite{psyc:skinner2019behavior}
-
-\cite{rl:rumelhart1986learning}
-\cite{rl:kakade2001natural}
-\cite{rl:peters2005natural}
-\cite{rl:degris2012off}
-\cite{rl:schulman2015trust}
-\cite{rl:schulman2017proximal}
-\cite{rl:pardo2018time}
-\cite{rl:haarnoja2018soft}
-\cite{rl:makoviychuk2021isaac}
-
-\cite{rl:mujocoaccelereted2023}
-
-
-\cite{frameworks::horizon_to}
-
-\cite{frameworks:mittal2023orbit}
-\cite{frameworks:howell2022}
-\cite{mpc_learn:hewing2020learning}
+Over the years, many algorithms for the solution of the classical receding-horizon nonlinear optimization program
+\begin{equation}\label{eq:opt_prog}
+	\begin{aligned}
+		& \underset{u_0,\,\ldots,\,u_{N-2};\,x_1,\,\ldots,\,x_{N-1}}{\text{minimize}}
+		& & L(x,\,u) \\
+		& \text{subject to}
+		& & x_{k+1} = f(x_k, u_k),\,\,\,\,\forall\,k\in[0,\,N-2]\\
+		& & & x_k \in \mathcal{X},\,\,\,\,\forall\,k\in[0,\,N-1] \\
+		& & & u_k \in \mathcal{U},\,\,\,\,\forall\,k\in[0,\,N-2] \\
+		& & & x_0 = x_{\text{init}}
+	\end{aligned}
+\end{equation}
+%where
+%\begin{itemize}
+%	\item System Dynamics: $\dot{x} = f(x, u)$
+%	\item Control Inputs: $u$
+%	\item State Constraints: $x \in \mathcal{X}$
+%	\item Control Constraints: $u \in \mathcal{U}$
+%	\item Objective Function: $L(u) = \sum_{k=0}^{N-1} l(x_k, u_k) + L_t(x_N)$
+%\end{itemize}
+have been developed, and several of them have direct ties with DP and, specifically, \textit{ Differential Dynamic Programming} (DDP)~\cite{rhc:jacobson1970differential,rhc:todorov2005generalized,rhc:diehl2009efficient,rhc:tassa2012synthesis}.
