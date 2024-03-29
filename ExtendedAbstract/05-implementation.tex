@@ -4,7 +4,6 @@
 	\includegraphics[width=0.85\columnwidth]{imgs/cocluster_arch.pdf}
 	\caption{High-level overview of the software implementation of the training environment to which the agent is exposed: the robot in the simulator is controlled through a joint-level impedance controller, which is in turn used by a higher-level receding horizon controller. The agent can indirectly control the robot through the latter. The training environment lives in an independent process and uses shared memory for interacting with the simulation environment.}
 	\label{fig:coclbridge_arch}
-	\vspace{-0.3cm}
 \end{figure}
 Most RL methods, especially on-policy ones, can be considerably sample inefficient, and training robust policies for real world deployment via domain randomization can further exacerbate the need for vast amounts of data. To overcome this issue we make use of GPU-accelerated simulation tools~\cite{web::isaacsim,rl:mujocoaccelereted2023}, which allow to generate massive amounts of simulated experience in a short amount of time. We choose \textit{Omniverse IsaacSim}~\cite{web::isaacsim} as the simulation backend, while we use PyTorch for all deep-learning related components and  \textit{Horizon}~\cite{frameworks::horizon_to} for formulating and running RHC controllers on CPU, with an iLQR solver backend.
 Fig.~\ref{fig:coclbridge_arch} shows a high level software overview of the main modules of the system:
