@@ -11,8 +11,8 @@ Fig.~\ref{fig:coclbridge_arch} shows a high level software overview of the main 
 	\item \textit{SharsorIPCpp}~\cite{mystuff::sharsoripcpp} serves as the shared memory backend for fast data sharing and synchronization between all components on CPU.
 	\item \textit{OmniRoboGym}~\cite{mystuff::omnirobogym} is used as a wrapper around IsaacSim and provides an interface to the \textit{simulation} environment.
 	\item \textit{CoClusterBridge}~\cite{mystuff::coclusterbridge} exploits~\cite{mystuff::sharsoripcpp} and coordinates the connection and synchronization between the simulation environment and a cluster of RHC controllers. It furthermore provides abstractions for the controllers and an extensible debug GUI for monitoring the cluster.
-	\item \textit{RHCViz}~\cite{mystuff::rhcviz} is a debug tool based on ROS1/ROS2 and RViz for visualizing RHC solutions in real-time. For our specific use case, it also allows to inspect a single environment during training without the need of any rendering on the simulator side.
 	\item \textit{LRHControl}~\cite{mystuff::lrhccontrol} is the main package of the echosystem and is responsible for setting up and running the simulation environment, the control cluster and the training environment.
+	\item \textit{RHCViz}~\cite{mystuff::rhcviz} is a debug tool based on ROS1/ROS2 and RViz for visualizing RHC solutions in real-time. For our specific use case, it also allows to inspect a single environment during training without the need of any rendering on the simulator side.
 \end{itemize}
 
 
