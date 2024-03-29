@@ -5,6 +5,7 @@
 	\includegraphics[width=0.9\textwidth]{imgs/learning_based_rhc.pdf}
 	\caption{Our take on Learning-based Receding Horizon Control: a RHC controller is hierarchically coupled with a higher-level RL agent during both training and real-world deployment. The RL agent has control over key RHC run-time parameters like contact phases and twist commands and can monitor its internal state (costs, constraint violations). The agent learns to exploit the underlying RHC controller to perform the tracking of user-specified high-level task references.}
 	\label{fig:lrhc_arch}
+	\vspace{-0.3cm}
 \end{figure*}
 State-of-the-art of locomotion and manipulation pipelines have been shown to be capable of remarkable performance and robustness~\cite{rl:schneider2023learning,rl:miki2024learning,web::atlas_grip_boston_dyn,web::lrhc_boston_dyn}. These results stand on the shoulders of more than seventy years of research in robotics, control and learning, starting from the very first industrial automated robot \textit{Unimate} in the 1950s~\cite{origins:xu2018fourth}, Richard Bellman's pioneering work in the late 1950s and early 1960s on \textit{Markov Decision Processes} (MDPs)~\cite{rl:bellman1957markovian} and \textit{Dynamic Programming}~\cite{rl:bellman1960dynamic} (DP) and the birth of \textit{Artificial Intelligence} (AI) as an established field of study thanks to the contributions of researchers like Alan Turing, John McCarthy, Marvin Minsky and Claude Shannon.
 
