@@ -7,10 +7,10 @@
 \end{figure}
 \cite{rl:mujocoaccelereted2023}
 \cite{frameworks:mittal2023orbit}
-
+\cite{rl:rudin2022learning}
 Fig.~\ref{fig:coclbridge_arch} shown a high level overview if the main moduli the echosystem is composed of. Specifically, it makes use of the following software packages:
 \begin{itemize}
-	\item Omniverse \textit{IsaacSim}~\cite{rl:makoviychuk2021isaac} is employed for performing the parallel GPU-accelerated simulation.
+	\item Omniverse \textit{IsaacSim}~\cite{web::isaacsim} is employed for performing the parallel GPU-accelerated simulation.
 	\item \textit{Horizon}~\cite{frameworks::horizon_to} is employed for formulating the RHC controller, with an iLQR solver employed for computing the actual solution. Each controller is spawned in its own process using python's multiprocessing module.
 	\item \textit{SharsorIPCpp}~\cite{mystuff::sharsoripcpp} is employed as a shared memory backend for fast data sharing between all the components on CPU.
 	\item \textit{OmniRoboGym}~\cite{mystuff::omnirobogym} is used as a wrapper around IsaacSim and provides the \textit{simulation} environment.
