@@ -1,4 +1,4 @@
-\section{Implementation: \textnormal{\textit{framework overview and main components}}}
+\section{IBRIDO Implementation: \textnormal{\textit{framework overview and main components}}}
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.85\columnwidth]{imgs/cocluster_arch.pdf}
@@ -7,7 +7,7 @@
 	\vspace{-0.3cm}
 \end{figure}
 Most RL methods, especially on-policy ones, can be considerably sample inefficient, and training robust policies for real world deployment via domain randomization can further exacerbate the need for vast amounts of data. To overcome this issue we make use of GPU-accelerated simulation tools~\cite{web::isaacsim,rl:mujocoaccelereted2023}, which allow to generate massive amounts of simulated experience in a short amount of time. We choose \textit{Omniverse IsaacSim}~\cite{web::isaacsim} as the simulation backend, while we use PyTorch for all deep-learning related components and  \textit{Horizon}~\cite{frameworks::horizon_to} for formulating and running RHC controllers on CPU, with an iLQR solver backend.
-Fig.~\ref{fig:coclbridge_arch} shows a high level software overview of the main modules of the system:
+Fig.~\ref{fig:coclbridge_arch} shows a high level software overview of the system, which is made of the following main modules :
 \begin{itemize}
 	\item \textit{SharsorIPCpp}~\cite{mystuff::sharsoripcpp} serves as the shared memory backend for fast data sharing and synchronization between all components on CPU.
 	\item \textit{OmniRoboGym}~\cite{mystuff::omnirobogym} is used as a wrapper around IsaacSim and provides an interface to the \textit{simulation} environment.
